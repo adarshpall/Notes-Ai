@@ -9,7 +9,7 @@ const getAnswer = async (req, res) => {
     const answer = await answerFromOpenAI(question, userId);
     res.json({ answer });
   } catch (err) {
-    console.error("❌ Error from OpenAI:", err.message);
+    console.error(" Error from OpenAI:", err.message);
     res.status(500).json({ error: "OpenAI failed to respond" });
   }
 };

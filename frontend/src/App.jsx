@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import FileUpload from "./components/FileUpload";
@@ -10,20 +9,27 @@ import "./App.css";
 
 function App() {
   const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
-  const [showLogin, setShowLogin] = useState(true); // toggle login/signup
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
+  const [showLogin, setShowLogin] = useState(true);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setIsAuth(false);
+    setUser(null);
   };
 
   const handleAuthSuccess = () => {
     setIsAuth(true);
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    setUser(storedUser);
   };
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-950 text-gray-800 dark:text-gray-100">
-      <Navbar onLogout={handleLogout} isAuth={isAuth} />
+      <Navbar onLogout={handleLogout} isAuth={isAuth} user={user} />
 
       <main className="max-w-4xl mx-auto p-4 space-y-6">
         {!isAuth ? (
