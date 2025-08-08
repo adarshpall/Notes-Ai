@@ -74,7 +74,14 @@ const register = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    res.status(201).json({ token, userId: user._id });
+    res.status(201).json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
   } catch (err) {
     console.error("Registration error:", err.message);
     res.status(500).json({ error: "Registration failed" });
@@ -99,7 +106,14 @@ const login = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.json({ token, userId: user._id });
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
   } catch (err) {
     console.error("Login error:", err.message);
     res.status(500).json({ error: "Login failed" });

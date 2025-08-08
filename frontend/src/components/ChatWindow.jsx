@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import axios from "axios";
 
+import api from "../api";
 export default function ChatWindow() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -26,8 +26,8 @@ export default function ChatWindow() {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/ask",
+      const res = await api.post(
+        "/ask",
         { question: input },
         {
           headers: {

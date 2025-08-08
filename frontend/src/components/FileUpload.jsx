@@ -1,6 +1,7 @@
 
 import { useRef, useState } from "react";
-import axios from "axios";
+
+import api from "../api";
 import toast from "react-hot-toast";
 
 export default function FileUpload() {
@@ -34,7 +35,7 @@ export default function FileUpload() {
 
     try {
       setUploading(true);
-      const res = await axios.post("http://localhost:5000/api/upload", formData, {
+      const res = await api.post("/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
