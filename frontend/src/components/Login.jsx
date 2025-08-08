@@ -1,4 +1,4 @@
-// src/components/Login.jsx
+
 import { useState } from "react";
 import api from "../api";
 import toast from "react-hot-toast";
@@ -16,10 +16,10 @@ export default function Login({ onAuth }) {
     try {
       const res = await api.post("/auth/login", { email, password });
       localStorage.setItem("token", res.data.token);
-      toast.success("✅ Login successful!");
+      toast.success(" Login successful!");
       onAuth();
     } catch (err) {
-      toast.error("❌ Login failed");
+      toast.error(" Login failed");
     }
   };
 

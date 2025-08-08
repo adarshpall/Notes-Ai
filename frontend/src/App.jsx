@@ -1,23 +1,4 @@
-// import Navbar from "./components/Navbar";
-// import FileUpload from "./components/FileUpload";
-// import ChatWindow from "./components/ChatWindow";
-// import { Toaster } from "react-hot-toast";
-// import "./App.css";
 
-// function App() {
-//   return (
-//     <div className="min-h-screen bg-gray-100 dark:bg-gray-950 text-gray-800 dark:text-gray-100">
-//       <Navbar />
-//       <main className="max-w-4xl mx-auto p-4 space-y-6">
-//         <FileUpload />
-//         <ChatWindow />
-//       </main>
-//       <Toaster position="top-right" />
-//     </div>
-//   );
-// }
-
-// export default App;
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import FileUpload from "./components/FileUpload";

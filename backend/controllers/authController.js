@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/User"); // MongoDB user model
+const User = require("../models/User"); 
 
 const register = async (req, res) => {
   const { email, password } = req.body;
@@ -13,7 +13,7 @@ const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ email, password: hashedPassword });
 
-    // Include user._id in JWT
+   
     const token = jwt.sign(
       { id: user._id.toString(), email: user.email },
       process.env.JWT_SECRET,
@@ -22,7 +22,7 @@ const register = async (req, res) => {
 
     res.status(201).json({ token, userId: user._id });
   } catch (err) {
-    console.error("❌ Registration error:", err.message);
+    console.error(" Registration error:", err.message);
     res.status(500).json({ error: "Registration failed" });
   }
 };
@@ -39,7 +39,6 @@ const login = async (req, res) => {
     if (!isMatch)
       return res.status(400).json({ error: "Invalid credentials" });
 
-    // Include user._id in JWT
     const token = jwt.sign(
       { id: user._id.toString(), email: user.email },
       process.env.JWT_SECRET,
@@ -48,7 +47,7 @@ const login = async (req, res) => {
 
     res.json({ token, userId: user._id });
   } catch (err) {
-    console.error("❌ Login error:", err.message);
+    console.error(" Login error:", err.message);
     res.status(500).json({ error: "Login failed" });
   }
 };
